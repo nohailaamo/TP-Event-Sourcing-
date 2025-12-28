@@ -1,21 +1,30 @@
 package amouhal.nouhayla.accountservice.commenApi.commands;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import org.axonframework.modelling.command.AggregateIdentifier;
-import org.axonframework.modelling.command.TargetAggregateIdentifier;
-
-@Builder
+import org.axonframework.modelling. command.TargetAggregateIdentifier;
 
 public class CreateAccountCommand extends BaseCommand<String> {
-    @Getter private String currency;
-    @Getter private double initialBalance;
+    @TargetAggregateIdentifier
+    private String id;
+    private double initialBalance;
+    private String currency;
 
-    public CreateAccountCommand(String id, String currency, double initialBalance) {
+    public CreateAccountCommand(String id, double initialBalance, String currency) {
         super(id);
-        this.currency = currency;
+        this.id = id;
         this.initialBalance = initialBalance;
+        this. currency = currency;
+    }
+
+    // Getters
+    public String getId() {
+        return id;
+    }
+
+    public double getInitialBalance() {
+        return initialBalance;
+    }
+
+    public String getCurrency() {
+        return currency;
     }
 }

@@ -1,13 +1,13 @@
-package amouhal.nouhayla.accountservice.commenApi.commands;
+package amouhal.nouhayla. accountservice.commenApi.commands;
 
-import lombok.Getter;
-import org.axonframework.modelling.command.TargetAggregateIdentifier;
+public abstract class BaseCommand<T> {
+    private T id;
 
-public abstract class BaseCommand <T> {
     public BaseCommand(T id) {
         this.id = id;
     }
 
-    @TargetAggregateIdentifier
-    @Getter T id;
+    public T getId() {
+        return id;
+    }
 }
