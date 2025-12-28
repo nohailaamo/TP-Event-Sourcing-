@@ -1,13 +1,11 @@
-package amouhal.nouhayla.accountservice.commands;
+package amouhal.nouhayla.accountservice.commands.controllers;
 
 import amouhal.nouhayla.accountservice.commenApi.commands.CreateAccountCommand;
 import amouhal.nouhayla.accountservice.commenApi.dto.CreateAccountDTO;
 import lombok.AllArgsConstructor;
 import org.axonframework.commandhandling.gateway.CommandGateway;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
@@ -26,5 +24,9 @@ public class AccountCommandController {
                 request.initialBalance()
         ));
         return result;
+    }
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity exceptionHandler(Exception exception){
+        return ResponseEntity.internalServerError().body(exception.getMessage());
     }
 }
